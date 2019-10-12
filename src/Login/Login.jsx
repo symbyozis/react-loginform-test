@@ -15,6 +15,7 @@ class Login extends React.Component {
 
     this.showHide = this.showHide.bind(this);
     this.emptyInp = this.emptyInp.bind(this);
+    this.formSubmit = this.formSubmit.bind(this);
   }
 
   showHide(e) {
@@ -23,6 +24,12 @@ class Login extends React.Component {
     this.setState({
       type: this.state.type === "text" ? "password" : "text"
     });
+  }
+
+  formSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    console.log(formData);
   }
 
   emptyInp(e) {
@@ -69,7 +76,9 @@ class Login extends React.Component {
           </label>
           <a href="#">Забыли пароль?</a>
         </main>
-        <button className="btn">Войти</button>
+        <button onSubmit={this.formSubmit} className="btn">
+          Войти
+        </button>
         <footer>
           Нет аккаунта? <a href="#">Регистрация</a>
         </footer>
